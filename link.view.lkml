@@ -7,16 +7,14 @@ view: link {
     type: number
   }
 
-  dimension_group: begin {
-    type: time
-    timeframes: [year]
-    sql: to_date(${TABLE}.begin_date_year || '', 'YYYY') ;;
+  dimension: begin {
+    sql: ${TABLE}.begin_date_year || '' ;;
+    type: string
   }
 
-  dimension_group: end {
-    type: time
-    timeframes: [year]
-    sql: to_date(${TABLE}.end_date_year || '', 'YYYY') ;;
+  dimension: end {
+    sql: ${TABLE}.end_date_year || '' ;;
+    type: string
   }
 
   dimension: link_type {

@@ -24,10 +24,10 @@ explore: work {
     fields: []
     from: link_type
     relationship: many_to_one
-    sql_on: ${composing_link.link_type} = ${composing_link_type.id} ;;
+    sql_on:
+      ${composing_link.link_type} = ${composing_link_type.id}
+      AND ${composing_link_type.name} = 'composer' ;;
   }
-
-  sql_always_where: ${composing_link_type.name} = 'composer' ;;
 
   join: composer {
     from: artist
@@ -44,21 +44,21 @@ explore: work {
     sql_on: ${link_place_work.work_id} = ${work.id} ;;
   }
 
-  join: place_link_detail {
+  join: premiere_link {
     fields: []
     from: link
     relationship: one_to_one
-    sql_on: ${place_link_detail.id} = ${link_place_work.detail_id} ;;
+    sql_on: ${premiere_link.id} = ${link_place_work.detail_id} ;;
   }
 
-  join: place_link_detail_type {
+  join: premiere_link_type {
     fields: []
     from: link_type
     relationship: many_to_one
-    sql_on: ${place_link_detail.link_type} = ${place_link_detail_type.id} ;;
+    sql_on:
+      ${premiere_link.link_type} = ${premiere_link_type.id}
+      AND ${premiere_link_type.name} = 'premiere' ;;
   }
-
-  sql_always_where: ${place_link_detail_type.name} = 'premiere';;
 
   join: premiere_location {
     from: place

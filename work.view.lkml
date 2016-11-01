@@ -1,6 +1,7 @@
 view: work {
-  # There are works which represent parts of other works (e.g., movements of a symphony), so we use this
-  # derived table definition to only select those which are "top-level" works themselves.
+  # There are works which represent parts of other works (e.g., movements of a
+  # symphony), so we use this derived table definition to only select those which are
+  # "top-level" works themselves.
   derived_table: {
     sql:
       select
@@ -10,7 +11,12 @@ view: work {
       where lww.id is null ;;
   }
 
-  # Dimensions ############################################################################################
+  # Dimensions ########################################################################
+
+  dimension: composed_year {
+    sql: to_timestamp(${composing_link.begin}, 'YYYY') ;;
+    type: date_year
+  }
 
   dimension: language {
     sql: ${language.name} ;;
@@ -25,7 +31,7 @@ view: work {
     sql: ${work_type.name} ;;
   }
 
-  # Measures ##############################################################################################
+  # Measures ##########################################################################
 
   measure: count {
     drill_fields: [basic_drill_set*]
@@ -33,10 +39,10 @@ view: work {
   }
 
   set: basic_drill_set {
-    fields: [name, type]
+    fields: [name, type, composed_year]
   }
 
-  # Hidden Fields #########################################################################################
+  # Hidden Fields #####################################################################
 
   dimension: id {
     hidden: yes
