@@ -9,8 +9,9 @@ view: place {
   }
 
   dimension: coordinates {
-    sql: ${TABLE}.coordinates ;;
-    type: string
+    sql_latitude: ${TABLE}.coordinates[0] ;;
+    sql_longitude: ${TABLE}.coordinates[1] ;;
+    type: location
   }
 
   dimension: name {

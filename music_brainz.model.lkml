@@ -44,10 +44,27 @@ explore: work {
     sql_on: ${link_place_work.work_id} = ${work.id} ;;
   }
 
-  join: place {
+  join: place_link_detail {
+    fields: []
+    from: link
+    relationship: one_to_one
+    sql_on: ${place_link_detail.id} = ${link_place_work.detail_id} ;;
+  }
+
+  join: place_link_detail_type {
+    fields: []
+    from: link_type
+    relationship: many_to_one
+    sql_on: ${place_link_detail.link_type} = ${place_link_detail_type.id} ;;
+  }
+
+  sql_always_where: ${place_link_detail_type.name} = 'premiere';;
+
+  join: premiere_location {
+    from: place
     fields: [address, coordinates, count, name, type]
     relationship: many_to_one
-    sql_on: ${link_place_work.place_id} = ${place.id} ;;
+    sql_on: ${link_place_work.place_id} = ${premiere_location.id} ;;
   }
 
   # Composer Details ################################################################
@@ -70,7 +87,7 @@ explore: work {
   join: place_type {
     fields: []
     relationship: one_to_one
-    sql_on: ${place.type_id} = ${place_type.id} ;;
+    sql_on: ${premiere_location.type_id} = ${place_type.id} ;;
   }
 
   # Work Details ####################################################################
