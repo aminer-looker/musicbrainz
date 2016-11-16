@@ -38,6 +38,16 @@ view: work {
     type: count
   }
 
+  measure: earliest_year {
+    type: min
+    sql: ${composed_year} ;;
+  }
+
+  measure: latest_year {
+    type: max
+    sql: ${composed_year} ;;
+  }
+
   set: basic_drill_set {
     fields: [name, type, composed_year]
   }
