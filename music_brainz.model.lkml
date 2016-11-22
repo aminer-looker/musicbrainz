@@ -81,7 +81,7 @@ explore: work {
     sql_on: ${composer.gender_id} = ${gender.id} ;;
   }
 
-  # PLace Details ###################################################################
+  # Place Details ###################################################################
 
   join: place_type {
     fields: []
