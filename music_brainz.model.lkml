@@ -32,7 +32,7 @@ explore: work {
     from: artist
     relationship: many_to_one
     sql_on: ${composer.id} = ${link_artist_work.artist_id} ;;
-    fields: [name, gender, type, count]
+    fields: [name, country, gender, type, count]
   }
 
   # Join to Place ###################################################################
@@ -79,6 +79,12 @@ explore: work {
     fields: []
     relationship: many_to_one
     sql_on: ${composer.gender_id} = ${gender.id} ;;
+  }
+
+  join: country {
+    fields: []
+    relationship: many_to_one
+    sql_on: ${composer.country_id} = ${country.id} ;;
   }
 
   # Place Details ###################################################################

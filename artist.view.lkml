@@ -5,17 +5,18 @@ view: artist {
 
   dimension: name {
     sql: ${TABLE}.name ;;
-    type: string
+  }
+
+  dimension: country {
+    sql: ${country.name} ;;
   }
 
   dimension: gender {
     sql: ${gender.name} ;;
-    type: string
   }
 
   dimension: sort_name {
     sql: ${TABLE}.sort_name ;;
-    type: string
   }
 
   dimension: type {
@@ -36,6 +37,11 @@ view: artist {
     primary_key: yes
     sql: ${TABLE}.id ;;
     type: number
+  }
+
+  dimension: country_id {
+    hidden: yes
+    sql: ${TABLE}.begin_area ;;
   }
 
   dimension: gender_id {
