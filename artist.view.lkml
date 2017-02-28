@@ -27,7 +27,7 @@ view: artist {
 
   measure: count {
     type: count
-    drill_fields: [name]
+    drill_fields: [name, country, gender, type]
   }
 
   # Hidden Fields #####################################################################
