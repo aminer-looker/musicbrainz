@@ -7,6 +7,10 @@ view: release {
     sql: ${TABLE}.name ;;
   }
 
+  dimension: country {
+    sql: ${country.name} ;;
+  }
+
   dimension: language {
     sql: ${language.name} ;;
   }
@@ -19,11 +23,28 @@ view: release {
     sql: ${release_status.name} ;;
   }
 
+  dimension: year {
+    sql: ${release_detail.year} ;;
+    type:  date_year
+  }
+
   # Measures ##########################################################################
 
   measure: count {
     type: count
     drill_fields: [name]
+  }
+
+  measure: earliest_release {
+    type: min
+    sql: ${release.year} ;;
+    value_format: "0"
+  }
+
+  measure: latest_release {
+    type: max
+    sql: ${release.year} ;;
+    value_format: "0"
   }
 
   # Hidden Fields #####################################################################

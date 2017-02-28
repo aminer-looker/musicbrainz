@@ -17,6 +17,12 @@ explore: release {
     sql_on: ${album.primary_type_id} = ${album_primary_type.id} ;;
   }
 
+  join: country {
+    fields: []
+    relationship: many_to_one
+    sql_on: ${release_detail.country_id} = ${country.id} ;;
+  }
+
   join: language {
     fields: []
     relationship: many_to_one
@@ -27,6 +33,12 @@ explore: release {
     fields: []
     relationship: many_to_one
     sql_on: ${release.packaging_id} = ${packaging.id} ;;
+  }
+
+  join: release_detail {
+    fields: []
+    relationship: one_to_many
+    sql_on: ${release.id} = ${release_detail.release_id} ;;
   }
 
   join: release_status {
