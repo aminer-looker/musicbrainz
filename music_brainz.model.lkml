@@ -2,6 +2,42 @@ connection: "musicbrainz"
 
 include: "*.view.lkml"
 
+#########################################################################################################
+
+explore: release {
+
+  join: album {
+    relationship: many_to_one
+    sql_on: ${release.album_id} = ${album.id} ;;
+  }
+
+  join: album_primary_type {
+    fields: []
+    relationship: many_to_one
+    sql_on: ${album.primary_type_id} = ${album_primary_type.id} ;;
+  }
+
+  join: language {
+    fields: []
+    relationship: many_to_one
+    sql_on: ${release.language_id} = ${language.id} ;;
+  }
+
+  join: packaging {
+    fields: []
+    relationship: many_to_one
+    sql_on: ${release.packaging_id} = ${packaging.id} ;;
+  }
+
+  join: release_status {
+    fields: []
+    relationship: many_to_one
+    sql_on: ${release.release_status_id} = ${release_status.id} ;;
+  }
+}
+
+#########################################################################################################
+
 explore: work {
 
   # Join to Composer ################################################################
