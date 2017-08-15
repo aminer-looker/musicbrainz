@@ -47,6 +47,10 @@ view: release {
     value_format: "0"
   }
 
+  set: standard_fields {
+    fields: [name, year]
+  }
+
   # Hidden Fields #####################################################################
 
   dimension: id {

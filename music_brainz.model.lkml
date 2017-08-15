@@ -23,10 +23,34 @@ explore: release {
     sql_on: ${release.artist_credit_id} = ${artist_credit.id} ;;
   }
 
+  join: artist_credit_name {
+    fields: []
+    relationship: one_to_many
+    sql_on: ${artist_credit.id} = ${artist_credit_name.artist_credit_id};;
+  }
+
   join: artist {
-    from: artist_facts
     relationship: many_to_one
-    sql_on: ${release.artist_credit_id} = ${artist.id} ;;
+    sql_on: ${artist_credit_name.artist_id} = ${artist.id} ;;
+  }
+
+  join: gender {
+    fields: []
+    relationship: many_to_one
+    sql_on: ${artist.gender_id} = ${gender.id};;
+  }
+
+  join: artist_type {
+    fields: []
+    relationship: many_to_one
+    sql_on: ${artist.type_id} = ${artist_type.id};;
+  }
+
+  join: artist_country {
+    from: country
+    fields: []
+    relationship: many_to_one
+    sql_on: ${artist.country_id} = ${artist_country.id};;
   }
 
   join: country {
@@ -141,10 +165,11 @@ explore: work {
     sql_on: ${composer.gender_id} = ${gender.id} ;;
   }
 
-  join: country {
+  join: artist_country {
+    from: country
     fields: []
     relationship: many_to_one
-    sql_on: ${composer.country_id} = ${country.id} ;;
+    sql_on: ${composer.country_id} = ${artist_country.id} ;;
   }
 
   # Place Details ###################################################################

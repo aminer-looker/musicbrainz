@@ -8,7 +8,7 @@ view: artist {
   }
 
   dimension: country {
-    sql: ${country.name} ;;
+    sql: ${artist_country.name} ;;
   }
 
   dimension: gender {
