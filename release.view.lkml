@@ -56,6 +56,12 @@ view: release {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: artist_credit_id {
+    hidden: yes
+    sql: ${TABLE}.artist_credit ;;
+    type: number
+  }
+
   dimension: album_id {
     hidden: yes
     sql: ${TABLE}.release_group ;;

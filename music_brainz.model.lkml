@@ -17,6 +17,18 @@ explore: release {
     sql_on: ${album.primary_type_id} = ${album_primary_type.id} ;;
   }
 
+  join: artist_credit {
+    fields: []
+    relationship: many_to_one
+    sql_on: ${release.artist_credit_id} = ${artist_credit.id} ;;
+  }
+
+  join: artist {
+    from: artist_facts
+    relationship: many_to_one
+    sql_on: ${release.artist_credit_id} = ${artist.id} ;;
+  }
+
   join: country {
     fields: []
     relationship: many_to_one
